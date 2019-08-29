@@ -1,0 +1,62 @@
+import React, { Component } from 'react'
+import {  DropdownToggle, DropdownMenu, DropdownItem, Dropdown } from 'reactstrap';
+import '../Dropdown.css';
+ class Categorie extends Component {
+    constructor(props) {
+        super(props);
+    
+        this.state = {
+          dropdownOpen: false
+        };
+      }
+    
+      toggle=()=> {
+        this.setState(prevState => ({
+          dropdownOpen: !prevState.dropdownOpen
+        }));
+      }
+    
+      onMouseEnter=()=> {
+        this.setState({dropdownOpen: true});
+      }
+    
+      onMouseLeave=()=> {
+        this.setState({dropdownOpen: false});
+      }
+    
+    
+    render() {
+        return (
+            <div className='touteslescatégories'>
+
+<div>
+<Dropdown  direction="right" onMouseOver={this.onMouseEnter} onMouseLeave={this.onMouseLeave}  isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+  <DropdownToggle caret >
+    Dropright
+  </DropdownToggle>
+  
+  <DropdownMenu>
+    <DropdownItem>Another Action</DropdownItem>
+    <DropdownItem>Another Action</DropdownItem>
+  </DropdownMenu>
+</Dropdown>
+           </div> 
+           <div>
+<Dropdown  direction="right"   isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+  <DropdownToggle caret onMouseOver={this.onMouseEnter} onMouseLeave={this.onMouseLeave}>
+    Dropright
+  </DropdownToggle>
+  
+  <DropdownMenu>
+    <DropdownItem>Another Action</DropdownItem>
+    <DropdownItem>Another Action</DropdownItem>
+  </DropdownMenu>
+</Dropdown>
+           </div>     
+    
+                
+            </div>
+        )
+    }
+}
+export default Categorie
