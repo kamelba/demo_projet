@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import Login from './Login'
-import SignUp from './SignUp'
+// import SignUp from './SignUp'
+import {Link} from 'react-router-dom'
+
+
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 class MonCompte extends Component {
@@ -29,7 +32,9 @@ class MonCompte extends Component {
               <div className='MonCompte'>
                 <Login  />
                 <div className="ligne_verticale" />
-                <SignUp />
+                {/* <SignUp /> */}
+                <Link to="/register"><button onClick={this.toggle}>Inscrivez vous</button></Link>
+
              </div>
           </ModalBody>
           <ModalFooter>

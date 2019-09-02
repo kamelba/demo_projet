@@ -4,58 +4,60 @@
 const router = require("express").Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-
-
 const passport = require("passport");
 const keys = require("../config/key");
-// Contact Model
+
+
+// UserModel
 const userModel = require('../model/usersModel');
 
 
 
-//singup
+// process register 
+
 
 router.post("/register", (req, res) => {
-  const {confirmation,password,email,identifiant}=req.body
-  
-if(confirmation !== password ) { return res.json({ error: "password not equal" }) }
-else{
-  userModel.findOne({ email }).then(user => {
-      if (user) {
-        return res.json({ error: "user already exist" });
-      }
-  
-    const newUser = new userModel({
-      identifiant,
-      email,
-      password
-  
-      // on a utilisé la methode Destructuring :
-     // const {confirmation,password,email,identifiant}=req.body    (v/) 
-     
-     //              (x)
-      // identifiant: req.body.email,   
-      // email: req.body.identifiant,   
-      // password: req.body.password,   
-  
-    });
-  // cryptage
-    bcrypt.genSalt(10, (err, salt) => {
-      bcrypt.hash(newUser.password, salt, (err, hash) => {
-        if (err) throw err;
-  
-    //crypter password
-        newUser.password = hash;
-  
-        newUser
-          .save()
-          .then(user => res.json(user))
-          .catch(err => res.send("cannot post"));
+  const {password,email,username}=req.body
+  console.log(req.body)
+userModel.findOne({ email }).then(user => {
+    if (user) {
+      return res.json({ error: "user already exist" });
+    }
+
+  const newUser = new userModel({
+    username,
+    email,
+    password
+
+    // on a utilisé la methode Destructuring :
+   // const {confirmation,password,email,identifiant}=req.body    (v/) 
+   
+   //              (x)
+    // identifiant: req.body.email,   
+    // email: req.body.identifiant,   
+    // password: req.body.password,   
+
+  });
+// cryptage
+  bcrypt.genSalt(10, (err, salt) => {
+    bcrypt.hash(newUser.password, salt, (err, hash) => {
+      if (err) throw err;
+
+  //crypter password
+      newUser.password = hash;
+
+      newUser 
+      .save()
+     .then(user => res.json(user))
+      
+      .catch(err => res.send("cannot post"));
+
         });
-    });
-    
-   });}
+  });
+  
+ });
 });
+
 
 //login
 
@@ -63,13 +65,13 @@ router.post("/login", (req, res) => {
   const { email, password } = req.body;
 
   userModel.findOne({ email }).then(user => {
-    const { id, email, identifiant } = user;
+    const { id, email, username } = user;
     if (!user) {
       return res.json({ error: "email is not valid" });
     }
     bcrypt.compare(password, user.password).then(isMatch => {
       if (isMatch) {
-        const payload = { id, email, identifiant };
+        const payload = { id, email, username };
         jwt.sign(
           payload,
           keys.secretOrKey,

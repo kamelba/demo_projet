@@ -1,23 +1,29 @@
 import React from 'react';
+import Home from './Pageroute/home'
+// import About from './Pageroute/about'
 import Navbar from './Component/Navbar'
-import Categorie from './Component/Categorie'
-import Search from './Component/search'
 import Annonce from './reactstarp/Annonce'
+import Register from './reactstarp/register'
 
-import {BrowserRouter as Router,Route} from 'react-router-dom'
-function App() {
+
+import {BrowserRouter,Route} from 'react-router-dom'
+ 
+
+
+function Apptest() {
   return (
-    <Router className="body">  
-      <Navbar/>
-      <div className='Catg-Sch'>
-      <Categorie className='Catg'/>
-    <Search/>
-    </div>
+    <BrowserRouter className="body">  
+    <Navbar/>
+
+     <Route exact path="/" component={Home}/>
+     <Route path="/register" component={Register}/>
+     <Route path='/annonce' component={Annonce} />
+
     
-       <Route path='/annonce' component={Annonce} />
+    </BrowserRouter>
+
     
-    </Router>
   );
 }
 
-export default App;
+export default Apptest;

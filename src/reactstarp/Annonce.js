@@ -14,43 +14,76 @@ class Annonce extends React.Component {
         
         <FormGroup>
           <Label for="text">Titre </Label>
-          <Input type="text" name="Titre" id="Titre-ID" placeholder="Titre" style={{width:'400px'}} />
+          <Input type="text" name="Titre" id="Titre-ID" placeholder="Titre" style={{width:'400px'}} required/>
         </FormGroup>
 
         <FormGroup>
           <Label for="exampleSelect">Select Catégorie</Label>
-          <Input type="select" name="select" id="exampleSelect" style={{width:'200px'}} onChange={e=>this.setState({test:e.target.value})} >
-            <option>select</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
+          <Input type="select" name="select" id="exampleSelect" style={{width:'300px'}} onChange={e=>this.setState({test:e.target.value})} >
+            <option>Select Catégorie</option>
+            <option>Téléphones</option>
+            <option>Véhicules</option>
+            <option>Immobilier</option>
+            <option>Informatique</option>
+            <option>Maison & Fournitures</option>
+            <option>Electronique & Electroménager</option>
+            <option>Vêtements</option>
+            <option>Loisirs & Divertissements</option>
+            <option>Emploi et services</option>
+
           </Input>
         </FormGroup>
         <FormGroup>
-          <Label for="exampleSelect">Select Catégorie</Label>
+          <Label for="exampleSelect">Sous Catégorie</Label>
           {
-            this.state.test==="select"?<Input type="select" name="select" id="exampleSelect" style={{width:'200px'}} disabled> 
-            <option>selecthghg </option>
-         
-            
-          </Input>:<Input type="select" name="select" id="exampleSelect" style={{width:'200px'}} > 
-            <option>select </option>
-            <option>2ggsg</option>
-            <option>3sgs</option>
-            <option>4</option>
-            <option>5</option>
-          </Input>
+            this.state.test==="Select Catégorie"?<Input type="select" name="select" id="exampleSelect" style={{width:'300px'}} disabled> 
+            <option>Select Catégorie </option>
+
+         </Input>:this.state.test==="Véhicules"?
+         <Input type="select" name="select" id="exampleSelect" style={{width:'300px'}} > 
+            <option>Voiture </option>
+            <option>Motos</option>
+            <option>Pièces et Accessoires pour véhicules</option>
+            <option>Remorques et Caravanes</option>
+            <option>Camions</option>
+            <option>Autres</option>
+          </Input>:this.state.test==="Immobilier"?
+          <Input type="select" name="select" id="exampleSelect" style={{width:'300px'}} >
+            <option>Appartements </option>
+            <option>Maisons et Villas</option>
+            <option>Locations de vacances</option>
+            <option>Bureaux et Plateaux</option>
+            <option>Magasins, Commerces et Locaux industriels</option>
+            <option>Autres</option>
+          </Input>:this.state.test==="Informatique"?
+          <Input type="select" name="select" id="exampleSelect" style={{width:'300px'}} >
+            <option>Ordinateurs portables </option>
+            <option>Accessoires informatique et Gadgets</option>
+            <option>Appareils photo et Caméras</option>
+            <option>Télévisions</option>
+            <option>Image & Son</option>
+            <option>Autres</option>
+          </Input>: <Input type="select" name="select" id="exampleSelect" style={{width:'300px'}} >
+            <option>--</option>
+            <option>--</option>
+            <option>--</option>
+            <option>--</option>
+            <option>--</option>
+            <option>--</option></Input>
           }
         </FormGroup>
 
         <FormGroup>
           <Label for="exampleText">Description</Label>
-          <Input type="textarea" name="text" id="description" />
+          <Input type="textarea" name="text" id="description" required />
         </FormGroup>
         <FormGroup>
           <Label for="text">Prix </Label>
-          <Input type="text" name="prix" id="Prix-ID" placeholder="prix" style={{width:'400px'}} />
+          <div className='prix-annonce'>
+          <Input type="number" name="prix" id="Prix-ID" placeholder="exemple:100" style={{width:'400px'}} required />
+          <span>D</span>
+          </div>
+          
         </FormGroup>
 
         <FormGroup >
@@ -62,13 +95,13 @@ class Annonce extends React.Component {
           </FormText>
         </FormGroup>
         
-        <FormGroup check>
+        {/* <FormGroup check>
           <Label check>
             <Input type="checkbox" />
             Check me out
           </Label>
-        </FormGroup>
-        <Button style={{margin:'20px' }}>Suivant</Button>
+        </FormGroup> */}
+        <Button style={{margin:'20px' }} type='submit'>Suivant</Button>
       </Form>
 
 

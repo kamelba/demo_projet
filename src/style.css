@@ -89,3 +89,43 @@ height: 50px;
     position: absolute;
     border: solid;
     padding: 50px;}
+
+
+    /* register form */
+
+.stylingForm .container {
+    width: 60%;
+    margin: 50px auto;
+    box-shadow: 1px 1px 20px #ececec;
+    border-radius: 5px;
+    background: white;
+    padding: 30px
+}
+
+.stylingForm .container .leftSide > img {
+    width: 100%;
+    position: relative;
+    top: 110px;
+}
+
+.stylingForm .container .rightSide > h1 {
+    margin-bottom: 20px
+}
+
+.stylingForm .container .rightSide > form .form-group input {
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+    border-bottom: 1px solid #313045;
+}
+
+.stylingForm .container .rightSide > form > button {
+    width: 100%;
+    margin: 25px 0;
+    background: #00bcd4;
+    border-color: #00bcd4
+}
+
+.stylingForm .container .rightSide > form > button > span {
+    margin: 0 4px
+}
