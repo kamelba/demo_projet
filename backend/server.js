@@ -59,7 +59,7 @@ mongoose
   .catch(err => console.log(err));
 
 //use route
-// app.use("/annonce", require("./routes/annonce"));
+app.use("/annonce", require("./routes/annonce"));
 
 
 app.use("/", require("./routes/users"));

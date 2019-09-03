@@ -1,10 +1,21 @@
-import React from 'react';
+import React, { Component } from "react";
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import {addAnnonce} from "../redux/action/actionAnnonce"
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
-class Annonce extends React.Component {
+
+class Annonce extends Component {
   state={
-    test:"select"
+    title:'',
+    category:'',
+    description:'', 
+    price:'',
+    brand:'',
+    imga:'',
+    imgb:''
   }
+
   render() {
     return (
       <div  className='model-annonce'>
@@ -14,26 +25,27 @@ class Annonce extends React.Component {
         
         <FormGroup>
           <Label for="text">Titre </Label>
-          <Input type="text" name="Titre" id="Titre-ID" placeholder="Titre" style={{width:'400px'}} required/>
+          <Input type="text" name="Titre" id="Titre-ID" placeholder="Titre" style={{width:'400px'}}    onChange={e => {
+              this.setState({ title: e.target.value });
+            }}
+ required/>
         </FormGroup>
 
         <FormGroup>
-          <Label for="exampleSelect">Select Catégorie</Label>
-          <Input type="select" name="select" id="exampleSelect" style={{width:'300px'}} onChange={e=>this.setState({test:e.target.value})} >
-            <option>Select Catégorie</option>
-            <option>Téléphones</option>
-            <option>Véhicules</option>
-            <option>Immobilier</option>
-            <option>Informatique</option>
-            <option>Maison & Fournitures</option>
-            <option>Electronique & Electroménager</option>
-            <option>Vêtements</option>
-            <option>Loisirs & Divertissements</option>
-            <option>Emploi et services</option>
-
-          </Input>
+          <Label for="exampleSelect">Catégorie</Label>
+          <Input type="text" name="select" id="exampleSelect" style={{width:'300px'}} onChange={e => {
+              this.setState({ category: e.target.value });
+            }} ></Input>
         </FormGroup>
         <FormGroup>
+          <Label for="exampleSelect">brand</Label>
+          <Input type="text" name="brand" id="exampleSelect" style={{width:'300px'}} onChange={e => {
+              this.setState({ brand: e.target.value });
+            }} ></Input>
+        </FormGroup>
+
+                             {/* Sous Catégorie */}
+        {/* <FormGroup>
           <Label for="exampleSelect">Sous Catégorie</Label>
           {
             this.state.test==="Select Catégorie"?<Input type="select" name="select" id="exampleSelect" style={{width:'300px'}} disabled> 
@@ -71,29 +83,40 @@ class Annonce extends React.Component {
             <option>--</option>
             <option>--</option></Input>
           }
-        </FormGroup>
+        </FormGroup> */}
 
         <FormGroup>
           <Label for="exampleText">Description</Label>
-          <Input type="textarea" name="text" id="description" required />
+          <Input type="textarea" name="text" id="description" required   onChange={e => {
+              this.setState({ description: e.target.value });
+            }} />
         </FormGroup>
         <FormGroup>
           <Label for="text">Prix </Label>
           <div className='prix-annonce'>
-          <Input type="number" name="prix" id="Prix-ID" placeholder="exemple:100" style={{width:'400px'}} required />
-          <span>D</span>
+          <Input type="number" name="prix" id="Prix-ID" placeholder="exemple:100" style={{width:'400px'}} required nChange={e => {
+              this.setState({ price: e.target.value });
+            }} />
+          
           </div>
           
         </FormGroup>
 
-        <FormGroup >
-          <Label for="exampleFile" >File</Label>
-          <Input type="file" name="file" id="exampleFile" />
-          <FormText color="muted">
-            This is some placeholder block-level help text for the above input.
-            It's a bit lighter and easily wraps to a new line.
-          </FormText>
+        <FormGroup>
+          <Label for="text">Image 1 </Label>
+          <Input type="text" name="image1" id="image1-ID" placeholder="Image 1" style={{width:'400px'}}    onChange={e => {
+              this.setState({ imga: e.target.value });
+            }}
+ required/>
         </FormGroup>
+        <FormGroup>
+          <Label for="text">Image 2 </Label>
+          <Input type="text" name="image2" id="image2-ID" placeholder="Image 2" style={{width:'400px'}}    onChange={e => {
+              this.setState({ imgb: e.target.value });
+            }}
+ required/>
+        </FormGroup>
+
         
         {/* <FormGroup check>
           <Label check>
@@ -101,7 +124,10 @@ class Annonce extends React.Component {
             Check me out
           </Label>
         </FormGroup> */}
-        <Button style={{margin:'20px' }} type='submit'>Suivant</Button>
+                  <Link to="/">
+        <Button style={{margin:'20px' }} onClick={() => {
+                this.props.addAnnonce(this.state);
+              }}>addAnnonce</Button></Link>
       </Form>
 
 
@@ -111,4 +137,7 @@ class Annonce extends React.Component {
   }
 }
 
-export default Annonce;
+export default connect(
+  null,
+  { addAnnonce }
+)(Annonce);

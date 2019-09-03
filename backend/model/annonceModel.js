@@ -3,29 +3,26 @@ const Schema = mongoose.Schema;
 
 // Create Schema
 const AnnonceSchema = new Schema({
-  titre: {
-    type: String,
-    required: true
+  title: {
+    type: String
   },
-  catégorie: {
-    type: String,
-    required: true
-  },
-  sousCatégorie: {
-    type: String,
-    required: true
+  category: {
+    type: String
   },
   description: {
-    type: String,
-    required: true
+    type: String
   },
-  prix: {
-    type: String,
-    required: true
+  price: {
+    type: String
   },
-  file: {
-    type: String,
-    required: true
+  brand: {
+    type: String
+  },
+  imga: {
+    type: String
+  },
+  imgb: {
+    type: String
   },
   date: {
     type: Date,

@@ -9,6 +9,12 @@ const initialState = {
           ...state,
           user: action.payload
         };
+        case "GET_ANNONCE":
+          return {
+            ...state,
+            annonce: action.payload
+          };
+    
 
       default:
         return state;
